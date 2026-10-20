@@ -480,7 +480,7 @@ router.get(
         }
 
         const result: typeof user & {
-          reputation?: { totalScore: string; totalWeight: string; reviewCount: number };
+          reputation?: { totalScore: string; totalWeight: string };
         } = user;
 
         if (user.role === "FREELANCER" && user.walletAddress) {
@@ -489,7 +489,6 @@ router.get(
             result.reputation = {
               totalScore: reputation.score.toString(),
               totalWeight: reputation.endorsementWeight.toString(),
-              reviewCount: 0,
             };
           }
         }
@@ -570,7 +569,6 @@ router.get(
             reputation: reputation ? {
               totalScore: reputation.score.toString(),
               totalWeight: reputation.endorsementWeight.toString(),
-              reviewCount: 0,
             } : null,
           };
         }
