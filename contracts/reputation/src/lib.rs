@@ -1625,6 +1625,18 @@ impl ReputationContract {
             .unwrap_or(0)
     }
 
+    /// Get the current referral bonus configuration.
+    ///
+    /// Returns the configured bonus rating credited to a referrer when their
+    /// referee triggers `process_referral_bonus`, or `DEFAULT_REFERRAL_BONUS`
+    /// (5) if unset.
+    pub fn get_referral_bonus(env: Env) -> u64 {
+        env.storage()
+            .instance()
+            .get(&DataKey::ReferralBonus)
+            .unwrap_or(DEFAULT_REFERRAL_BONUS)
+    }
+
     /// Set the minimum stake weight threshold (admin/signer only).
     /// Reviews submitted with stake_weight below this value are rejected with StakeTooLow.
     pub fn set_min_stake_weight(
