@@ -1637,6 +1637,15 @@ impl ReputationContract {
             .unwrap_or(DEFAULT_REFERRAL_BONUS)
     }
 
+    /// Get the configured maximum decay rate ceiling.
+    ///
+    /// Returns the super-admin configured upper bound for `decay_rate`, or
+    /// `MAX_DECAY_RATE` (20) if unset. This ceiling itself is capped at
+    /// `MAX_DECAY_RATE_HARD_CEILING` (50) by `set_max_decay_rate`.
+    pub fn get_max_decay_rate(env: Env) -> u32 {
+        effective_max_decay_rate(&env)
+    }
+
     /// Set the minimum stake weight threshold (admin/signer only).
     /// Reviews submitted with stake_weight below this value are rejected with StakeTooLow.
     pub fn set_min_stake_weight(
