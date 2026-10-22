@@ -1,10 +1,10 @@
 import request from "supertest";
 import express from "express";
 
-// ─── Mocks ────────────────────────────────────────────────────────────────────
 jest.mock("@prisma/client", () => {
   const mockPrisma = {
-    $queryRaw: jest.fn().mockResolvedValue([]),
+    job: { count: jest.fn().mockResolvedValue(3) },
+    user: { count: jest.fn().mockResolvedValue(2) },
   };
   return { PrismaClient: jest.fn(() => mockPrisma) };
 });
