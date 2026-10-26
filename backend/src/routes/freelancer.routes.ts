@@ -573,7 +573,6 @@ router.get(
             ? {
                 totalScore: reputation.score.toString(),
                 totalWeight: reputation.endorsementWeight.toString(),
-                reviewCount: 0,
               }
             : null,
         };
@@ -669,7 +668,6 @@ router.get(
       reputation: reputation ? {
 totalScore: reputation.score.toString(),
 totalWeight: reputation.endorsementWeight.toString(),
-reviewCount: 0,
 tier: reputation.tier,
       } : null
     });
